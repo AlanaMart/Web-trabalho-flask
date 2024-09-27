@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Criar Formulário</title>
+</head>
+<body>
+    <form id="formulario">
+        <div class="input-container">
+            <label for="nome">Título*</label>
+            <input type="text" name="nome" id="nome">
+            <span class="hide span">Campo Obrigatório</span>
+        </div>
+        <div class="input-container">
+            <label for="descricao">Descrição*</label>
+            <input type="text" name="descricao" id="descricao">
+            <span class="hide span">Campo Obrigatório</span>
+        </div>
+        <div id="perguntas"></div>
+        <div class="btn">
+            <input type="submit" value="Salvar" id="btnEnviar">
+            <input type="button" value="Adicionar Pergunta" id="btnAddField">
+        </div>
+    </form>
+</body>
+</html>

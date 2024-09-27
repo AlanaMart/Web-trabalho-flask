@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Editar Formulário</title>
+</head>
+<body>
+    <form id="formulario" action ="/formulario/{{formulario.id}}/editar/submit" method="POST">
+        <div class="input-container">
+            <label for="nome">Título*</label>
+            <input type="text" name="nome" id="nome" value="{{ formulario.nome }}">
+            <span class="hide span">Campo Obrigatório</span>
+        </div>
+        <div class="input-container">
+            <label for="descricao">Descrição*</label>
+            <input type="text" name="descricao" id="descricao" value="{{ formulario.descricao }}">
+            <span class="hide span">Campo Obrigatório</span>
+        </div>
+
+        <div id="perguntas">
+            {% for pergunta in formulario.perguntas %}
+            <div class="input-container">
+                <input type="text" value="{{ pergunta.texto }}">
+                <select>
+                    <option value="text" {% if pergunta.tipo == 'text' %}selected{% endif %}>Resposta curta</option>
+                    <option value="textarea" {% if pergunta.tipo == 'textarea' %}selected{% endif %}>Resposta longa</option>
+                    <option value="radio" {% if pergunta.tipo == 'radio' %}selected{% endif %}>Múltipla escolha</option>
+                    <option value="checkbox" {% if pergunta.tipo == 'checkbox' %}selected{% endif %}>Checkboc</option>
+                </select>
+                
+                {% if pergunta.tipo == 'radio' or pergunta.tipo == 'checkbox' %}
+                <div>
+                    {% for alternativa in pergunta.alternativas %}
+                        <input type="text" value="{{ alternativa.texto }}">
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="btn">
+            <input type="submit" value="Salvar" id="btnEnviar">
+            <input type="button" value="Adicionar Pergunta" id="btnAddField">
+        </div>
+    </form>
+</body>
+</html>

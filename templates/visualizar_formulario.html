@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Visualizar Formulário</title>
+</head>
+<body>
+
+    <div id="container-form">
+        <h1>{{ formulario.nome }}</h1>
+        <p>{{ formulario.descricao }}</p>
+
+        <form id="ver_form">
+            {% for pergunta in formulario.perguntas %}
+                <div class="input-container">
+                    <label>{{ pergunta.texto }}</label>
+                    {% if pergunta.tipo == 'text' %}
+                        <input type="text" name="resposta-{{ pergunta.id }}">
+                    {% elif pergunta.tipo == 'textarea' %}
+                        <textarea name="resposta-{{ pergunta.id }}"></textarea>
+                    {% elif pergunta.tipo == 'radio' %}
+                        {% for alternativa in pergunta.alternativas %}
+                            <input type="radio" name="resposta-{{ pergunta.id }}" value="{{ alternativa.texto }}">{{ alternativa.texto }}<br>
+                        {% endfor %}
+                    {% elif pergunta.tipo == 'checkbox' %}
+                        {% for alternativa in pergunta.alternativas %}
+                            <input type="checkbox" name="resposta-{{ pergunta.id }}" value="{{ alternativa.texto }}">{{ alternativa.texto }}<br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <input type="submit" value="Responder">
+        </form>
+        <br>
+        <a href="/formularios">Ir para lista de formulários</a>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+body{
+    background-color: #042234;
+}
+
+form{
+    background-color: rgb(36, 38, 44);
+    margin: 100px auto 0;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: white;
+}
+
+.input-container{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container label{
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.input-container input{
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 12px;;
+}
+
+form input[type='submit']{
+    margin: 10px auto;
+    width: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #149c5a;
+    color: #f0f0f0;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+#btnAddField{
+    margin: 10px auto;
+    width: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #33617b;
+    color: #f0f0f0;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+form input[type='submit']:hover{
+    opacity: 1;
+}
+
+.invalid{
+    border: 2px solid red;
+}
+
+span{
+    color: red;
+}
+
+.hide{
+    display: none;
+}
+
+li{
+    list-style: none;
+    background-color: rgb(52, 67, 82);
+    padding: 50px;
+    border: solid 5px #042234;
+    border-radius: 10px;
+}
+
+#container-forms{
+    padding: 10px;
+    align-items: center;
+    text-align: center;
+    color: #f0f0f0;
+
+}
+
+#container-form{
+    padding: 10px;
+    background-color: rgba(68, 86, 86, 0.471);
+    align-items: center;
+    text-align: center;
+    color: white;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+
+strong{
+    font-size: 20px;
+}
+
+a{
+    color: #f0f0f0;
+    text-decoration: none;
+    border: solid 2px rgb(7, 7, 7);
+    background-color: #4b616b;
+    padding: 10px;
+    border-radius: 5px;
+}

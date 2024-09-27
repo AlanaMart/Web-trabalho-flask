@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Formulários</title>
+</head>
+<body>
+
+    <div id="container-forms">
+        <h1>Seus Formulários</h1>
+        <a href="/">Criar Novo Formulário</a>
+        {% if formularios %}
+            <ul>
+            {% for form in formularios %}
+                <li>
+                    <strong>Título:</strong> {{ form.nome }} <br>
+                    <strong>Descrição:</strong> {{ form.descricao }}
+                    <form id="formulario-{{ form.id }}">
+                        {% for pergunta in form.perguntas %}
+                            <div class="input-container">
+                                <label>{{ pergunta.texto }}</label>
+                                {% if pergunta.tipo == 'text' %}
+                                    <input type="text" name="resposta-{{ pergunta.id }}">
+                                {% elif pergunta.tipo == 'textarea' %}
+                                    <textarea name="resposta-{{ pergunta.id }}"></textarea>
+                                {% elif pergunta.tipo == 'radio' %}
+                                    {% for alternativa in pergunta.alternativas %}
+                                        <input type="radio" name="resposta-{{ pergunta.id }}" value="{{ alternativa.texto }}">{{ alternativa.texto }}<br>
+                                    {% endfor %}
+                                {% elif pergunta.tipo == 'checkbox' %}
+                                    {% for alternativa in pergunta.alternativas %}
+                                        <input type="checkbox" name="resposta-{{ pergunta.id }}" value="{{ alternativa.texto }}">{{ alternativa.texto }}
+                                        <br>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                        <input type="submit" value="Responder">
+                    </form>
+                    <br>
+                    <a href="/formulario/{{ form.id }}/editar">Editar</a>
+
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhum formulário foi criado ainda.</p>
+        {% endif %}
+
+
+    </div>
+</body>
+</html>
